@@ -38,9 +38,11 @@ jobs:
         needs: build
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-            - name: Install dependencies
-              run: npm ci
+            - name: Get Build artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: dist-files # Name of the artifact
+            - name: Output contents
+              run: ls
             - name: Deploy Website
               run: echo "Deploying..."
